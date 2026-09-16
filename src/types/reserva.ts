@@ -6,4 +6,5 @@ export interface Reserva {
   asientos: string[];
   total: number;
   fecha: string;
+  utilizada: boolean;
 }

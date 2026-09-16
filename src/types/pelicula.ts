@@ -1,15 +1,19 @@
 export interface Funcion {
   id: string;
   horario: string;
-  tipo: string; // Ej: "Función Estándar", "IMAX", etc.
+  tipo: string;
 }
 
 export interface Pelicula {
   id: string;
+  codigo: string;
   titulo: string;
-  sinopsis?: string;
-  imagen?: string;
-  duracion?: string;
-  genero?: string;
-  funciones?: Funcion[];
+  sinopsis: string;
+  genero: string;
+  duracion: string;
+  clasificacion: string;
+  sala: string;
+  precio: number;
+  disponible: boolean;
+  funciones: Funcion[];
 }

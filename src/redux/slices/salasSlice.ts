@@ -38,8 +38,9 @@ export const salasSlice = createSlice({
         }
       }
     },
+    cargarSalas: (state, action: PayloadAction<SalasState>) => action.payload,
   },
 });
 
-export const { inicializarSala, cambiarEstadoAsiento } = salasSlice.actions;
+export const { inicializarSala, cambiarEstadoAsiento, cargarSalas } = salasSlice.actions;
 export default salasSlice.reducer;

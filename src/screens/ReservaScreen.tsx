@@ -15,6 +15,7 @@ export default function ReservaScreen({ route, navigation }: any) {
       peliculaTitulo: pelicula.titulo,
       funcion: funcionElegida,
       cantidad: cantidadAsientos,
+      precio: pelicula.precio,
     });
   };
 

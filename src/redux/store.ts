@@ -1,39 +1,38 @@
 import { configureStore } from '@reduxjs/toolkit';
-import reservasReducer, { cargarEstadoGuardado } from './slices/reservasSlice';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import peliculasReducer from './slices/peliculasSlice';
+import peliculasReducer, { cargarPeliculas } from './slices/peliculasSlice';
+import reservasReducer, { cargarEstadoGuardado } from './slices/reservasSlice';
+import salasReducer, { cargarSalas } from './slices/salasSlice';
 
-const STORAGE_KEY = '@cine_app_estado_reservas';
+const STORAGE_KEY = '@cine_app_estado';
 
 export const store = configureStore({
   reducer: {
-    reservas: reservasReducer,
     peliculas: peliculasReducer,
+    reservas: reservasReducer,
+    salas: salasReducer,
   },
 });
 
-// Guardar en AsyncStorage automáticamente cuando el estado cambie
-store.subscribe(async () => {
-  try {
-    const estadoActual = store.getState().reservas;
-    await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(estadoActual));
-  } catch (error) {
-    console.log('Error al guardar en AsyncStorage:', error);
-  }
-});
+let hidratado = false;
 
-// Cargar los datos almacenados al iniciar la aplicación
 const cargarDatosLocales = async () => {
   try {
-    const datosGuardados = await AsyncStorage.getItem(STORAGE_KEY);
-    if (datosGuardados) {
-      const estadoParseado = JSON.parse(datosGuardados);
-      store.dispatch(cargarEstadoGuardado(estadoParseado));
+    const datos = await AsyncStorage.getItem(STORAGE_KEY);
+    if (datos) {
+      const estado = JSON.parse(datos);
+      if (estado.peliculas) store.dispatch(cargarPeliculas(estado.peliculas));
+      if (estado.reservas) store.dispatch(cargarEstadoGuardado(estado.reservas));
+      if (estado.salas) store.dispatch(cargarSalas(estado.salas));
     }
-  } catch (error) {
-    console.log('Error al cargar de AsyncStorage:', error);
+  } finally {
+    hidratado = true;
   }
 };
+
+store.subscribe(() => {
+  if (hidratado) AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(store.getState()));
+});
 
 cargarDatosLocales();
 

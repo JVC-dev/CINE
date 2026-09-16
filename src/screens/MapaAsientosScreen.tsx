@@ -20,7 +20,7 @@ const generarCodigoUnico = () => {
 export default function MapaAsientosScreen({ route, navigation }: any) {
   const dispatch = useDispatch();
 
-  const { peliculaTitulo = 'Spider-Man: Beyond', funcion = 'Función Estándar', cantidad = 1 } = route?.params || {};
+  const { peliculaTitulo = 'Spider-Man: Beyond', funcion = 'Función Estándar', cantidad = 1, precio = 5.5 } = route?.params || {};
   
   const claveFuncion = `${peliculaTitulo}-${funcion}`;
 
@@ -30,7 +30,7 @@ export default function MapaAsientosScreen({ route, navigation }: any) {
   });
 
   const maxAsientos = Number(cantidad) || 1;
-  const precioUnitario = 5.50;
+  const precioUnitario = Number(precio) || 0;
 
   const [asientosSeleccionados, setAsientosSeleccionados] = useState<string[]>([]);
   
@@ -74,6 +74,7 @@ export default function MapaAsientosScreen({ route, navigation }: any) {
       asientos: asientosSeleccionados,
       total: totalPagar,
       fecha: new Date().toLocaleDateString(),
+      utilizada: false,
     };
 
     dispatch(agregarReserva(nuevaReserva));

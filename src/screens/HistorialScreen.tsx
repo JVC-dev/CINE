@@ -57,8 +57,8 @@ export default function HistorialScreen({ navigation }: any) {
                 <QRCode
                   value={reserva.codigo || 'CINE-TICKET'}
                   size={65}
-                  color="#ffffff"
-                  backgroundColor="#1e1e1e"
+                  color="#000000"
+                  backgroundColor="#ffffff"
                 />
               </View>
             </View>
@@ -106,8 +106,8 @@ export default function HistorialScreen({ navigation }: any) {
                   <QRCode
                     value={reservaSeleccionada.codigo || 'CINE-TICKET'}
                     size={140}
-                    color="#ffffff"
-                    backgroundColor="#1e1e1e"
+                    color="#000000"
+                    backgroundColor="#ffffff"
                   />
                 </View>
 

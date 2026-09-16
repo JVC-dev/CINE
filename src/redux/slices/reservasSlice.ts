@@ -24,6 +24,10 @@ export const reservasSlice = createSlice({
       }
       state.asientosOcupadosPorPelicula[claveFuncion].push(...action.payload.asientos);
     },
+    marcarReservaUtilizada: (state, action: PayloadAction<string>) => {
+      const reserva = state.misReservas.find(item => item.codigo === action.payload);
+      if (reserva) reserva.utilizada = true;
+    },
     cargarEstadoGuardado: (state, action: PayloadAction<ReservasState>) => {
       if (action.payload) {
         state.misReservas = action.payload.misReservas || [];
@@ -33,5 +37,5 @@ export const reservasSlice = createSlice({
   },
 });
 
-export const { agregarReserva, cargarEstadoGuardado } = reservasSlice.actions;
+export const { agregarReserva, marcarReservaUtilizada, cargarEstadoGuardado } = reservasSlice.actions;
 export default reservasSlice.reducer;

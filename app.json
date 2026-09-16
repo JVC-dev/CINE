@@ -21,6 +21,10 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      ["expo-camera", { "cameraPermission": "Permitir que CINE use la cámara para validar boletos", "recordAudioAndroid": false, "barcodeScannerEnabled": true }],
+      ["expo-local-authentication", { "faceIDPermission": "Permitir que CINE use Face ID para acceder a la Zona de Personal" }]
+    ]
   }
 }

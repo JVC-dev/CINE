@@ -17,7 +17,7 @@ export default function DashboardScreen({ navigation }: any) {
       {/* Tarjeta de Resumen / Accesos Rápidos */}
       <View style={styles.cardResumen}>
         <Text style={styles.cardTitle}>🎬 Cartelera Activa</Text>
-        <Text style={styles.cardDesc}>Tenemos {peliculas.length} películas disponibles en este momento.</Text>
+        <Text style={styles.cardDesc}>Tenemos {peliculas.filter(p => p.disponible).length} películas disponibles en este momento.</Text>
         <TouchableOpacity
           style={styles.btnPrimary}
           onPress={() => {
@@ -40,6 +40,10 @@ export default function DashboardScreen({ navigation }: any) {
           <Text style={styles.btnSecondaryText}>Ver Mis Entradas</Text>
         </TouchableOpacity>
       </View>
+
+      <TouchableOpacity style={styles.staffButton} onPress={() => navigation.navigate('AccesoPersonal')}>
+        <Text style={styles.staffText}>Acceso del personal</Text>
+      </TouchableOpacity>
     </ScrollView>
   );
 }
@@ -107,4 +111,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 14,
   },
+  staffButton: { alignItems: 'center', padding: 14, marginTop: 8 },
+  staffText: { color: '#777', fontSize: 12 },
 });

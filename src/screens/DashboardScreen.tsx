@@ -42,7 +42,7 @@ export default function DashboardScreen({ navigation }: any) {
       </View>
 
       <TouchableOpacity style={styles.staffButton} onPress={() => navigation.navigate('AccesoPersonal')}>
-        <Text style={styles.staffText}>🔒 Personal</Text>
+        <Text style={styles.staffText}>🔒</Text>
       </TouchableOpacity>
     </ScrollView>
   );
@@ -111,6 +111,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 14,
   },
-  staffButton: { alignSelf: 'flex-end', paddingVertical: 8, paddingHorizontal: 10, marginTop: 8, opacity: 0.6 },
-  staffText: { color: '#777', fontSize: 11 },
+  staffButton: { alignSelf: 'flex-end', padding: 8, marginTop: 8, opacity: 0.35 },
+  staffText: { fontSize: 14 },
 });
